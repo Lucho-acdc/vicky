@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aventura Romántica</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+  <div id="faseIntroduccion" class="tarjeta container text-center">
+    <h1 class="six">¡¿Estás preparada para esta aventura, Victoria?!</h1>
+    <p>Este programa te guiará a través de diferentes fases, cada una diseñada para acercarte más a un momento extraordinario. ¡Prepárate para la diversión y la emoción mientras avanzas hacia un evento inolvidable!</p>
+    <button id="comenzarBtn" class="btn btn-primary">Comenzar el juego</button>
+  </div>
+
+  <div id="faseTrivia" class="container text-center" style="display: none;">
+    <div class="tarjeta">
+      <div class="tarjeta-contenido">
+        <h1 class="six">Mini trivia</h1>
+        <div id="preguntaContainer">
+          <p id="pregunta"></p>
+          <form id="opcionesForm">
+            <ul id="opciones"></ul>
+          </form>
+        </div>
+        <button id="verificarRespuesta" class="btn btn-verificar">Verificar Respuesta</button>
+        <div id="errorContainer" style="display: none"></div>
+      </div>
+    </div>
+  </div>  
+
+  <div id="faseMemotest" class="container text-center" style="display: none;">
+    <div class="wrapper">
+      <div class="stats-container">
+        <div id="moves"></div>
+      </div>
+      <div class="game-container"></div>
+      <button id="stop" class="hide">Reiniciar</button>
+      <button id="avanzarMemotestButton" style="display: none;">Avanzar</button>
+    </div>
+    <div class="controls-container">
+      <p id="result"></p>
+      <button id="start">Comenzar</button>
+    </div>
+  </div>
+  
+
+  <div id="faseAcertijo" class="container text-center" style="display: none;">
+    <div class="tarjeta tarjeta-acertijo">
+      <div class="tarjeta-contenido">
+        <h1 class="six">¡Superaste todos los desafíos y estamos llegando a la parte final de esta huevada! Gracias por prenderte a hacer esto, gracias por querer estar a mi lado, gracias.</h1>
+        <p>Las sorpresas más hermosas están reservadas para aquellos que se aventuran a soñar juntos. Cuando resuelvas este acertijo, vos diras como continua...:</p>
+        <h1 class="six"></h1>Si resolves el acertijo pasas a la etapa final... </h1>
+        <p>En el dedo halla morada, silencioso testigo,<br>
+          mientras la vida despliega su abanico.<br>
+          En el universo de nuestro amor sincero,<br>
+          reside este enigma, cual mensaje ligero.<br>
+          Como Benedetti en versos, te invito a explorar,<br>
+          un misterio sutil, te invito a desvelar.
+        </p>
+        <input type="text" id="respuestaAcertijo" placeholder="Escribe tu respuesta aquí">
+        <button id="verificarAcertijo" class="btn btn-acertijo btn-primary">Verificar respuesta</button>
+        <div id="errorContainer" style="display: none"></div>
+      </div>
+    </div>
+  </div>
+  
+
+  <div id="fasePropuesta" class="container text-center" style="display: none;">
+    <div class="tarjeta tarjeta-propuesta">
+      <div class="tarjeta-contenido">
+        <h1 class="six">
+          Quiero preguntarte algo importante que cambiará nuestras vidas para siempre.<br>
+          Victoria Evangelina Mestre Cordero ¿Queres hacerme el honor de ser mi esposa?
+        </h1>
+  
+        <!-- Contenedor específico para el GIF -->
+        <div class="gif-container">
+          <iframe class="gif-container" src="https://giphy.com/embed/6Fg30GW5dhTgs" width="100%" height="100%" style="position:relative" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+        </div>
+  
+        <div id="opcionesRespuesta">
+          <button id="opcionSi1" class="btn btn-primary">Sí, acepto!</button>
+          <button id="opcionSi2" class="btn btn-primary">Claro que sí, amor</button>
+          <button id="opcionSi3" class="btn btn-primary">¡Sí, sí, sí!</button>
+          <button id="opcionSi4" class="btn btn-primary">Todas las anteriores</button>
+          <button id="opcionNo" class="btn btn-primary">Dejame pensarlo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+ 
+
+  <!-- Fase Respuesta Positiva -->
+  <div id="faseRespuestaPositiva" style="display: none;">
+  </div>
+
+  <!-- Fase Error Respuesta -->
+  <div id="faseErrorRespuesta" style="display: none;">
+  </div>
+  
+
+  <script src="./js/main.js"></script>
+</body>
+</html>
