@@ -340,7 +340,7 @@ button {
 
 
 /* Estilos para la fase de acertijo */
-
+#fasePreAcertijo .tarjeta,
 #faseAcertijo .tarjeta {
   box-sizing: content-box;
   width: 30em;
@@ -687,6 +687,7 @@ button {
   
   }
 
+  #fasePreAcertijo .tarjeta,
   #faseAcertijo .tarjeta {
     box-sizing: border-box;
     width: 80vw;
