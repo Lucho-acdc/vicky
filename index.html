@@ -17,7 +17,7 @@
   <div id="faseTrivia" class="container text-center" style="display: none;">
     <div class="tarjeta">
       <div class="tarjeta-contenido">
-        <h1 class="six">Mini trivia</h1>
+        <h1 class="six">Quiz</h1>
         <div id="preguntaContainer">
           <p id="pregunta"></p>
           <form id="opcionesForm">
@@ -44,25 +44,31 @@
       <button id="start">Comenzar</button>
     </div>
   </div>
+
+  <div id="fasePreAcertijo" style="display: none;">
+    <div class="tarjeta preAcertijo">
+      <h1 class="six">Las sorpresas más hermosas están reservadas para aquellos que se aventuran a soñar juntos.</h1>
+      <p>¡Estas llegando a la parte final de esta huevada! Gracias por prenderte a hacer esto, gracias por querer estar a mi lado, gracias.</p>
+      <button id="avanzarPreAcertijo" class="btn btn-primary">Avanzar</button>
+    </div>
+  </div>
   
 
   <div id="faseAcertijo" class="container text-center" style="display: none;">
     <div class="tarjeta tarjeta-acertijo">
-      <div class="tarjeta-contenido">
-        <h1 class="six">¡Superaste todos los desafíos y estamos llegando a la parte final de esta huevada! Gracias por prenderte a hacer esto, gracias por querer estar a mi lado, gracias.</h1>
-        <p>Las sorpresas más hermosas están reservadas para aquellos que se aventuran a soñar juntos. Cuando resuelvas este acertijo, vos diras como continua...:</p>
-        <h1 class="six"></h1>Si resolves el acertijo pasas a la etapa final... </h1>
-        <p>En el dedo halla morada, silencioso testigo,<br>
+        <h1 class="six">Si resolves el acertijo pasas a la etapa final... </h1>
+        <p class="acertijoParrafo">En el dedo halla morada, silencioso testigo,<br>
           mientras la vida despliega su abanico.<br>
           En el universo de nuestro amor sincero,<br>
           reside este enigma, cual mensaje ligero.<br>
           Como Benedetti en versos, te invito a explorar,<br>
           un misterio sutil, te invito a desvelar.
         </p>
-        <input type="text" id="respuestaAcertijo" placeholder="Escribe tu respuesta aquí">
-        <button id="verificarAcertijo" class="btn btn-acertijo btn-primary">Verificar respuesta</button>
-        <div id="errorContainer" style="display: none"></div>
-      </div>
+        <div class="containerRespuestaAcertijo">
+          <input type="text" id="respuestaAcertijo" placeholder="Escribe tu respuesta aquí">
+          <button id="verificarAcertijo" class="btn btn-acertijo btn-primary">Verificar respuesta</button>
+          <div id="errorAcertijo" style="display: none"></div>
+        </div>
     </div>
   </div>
   
@@ -70,10 +76,8 @@
   <div id="fasePropuesta" class="container text-center" style="display: none;">
     <div class="tarjeta tarjeta-propuesta">
       <div class="tarjeta-contenido">
-        <h1 class="six">
-          Quiero preguntarte algo importante que cambiará nuestras vidas para siempre.<br>
-          Victoria Evangelina Mestre Cordero ¿Queres hacerme el honor de ser mi esposa?
-        </h1>
+        <h1 class="six">Victoria Evangelina Mestre Cordero</h1>
+        <h1 class="six">¿Queres hacerme el honor de ser mi esposa?</h1>
   
         <!-- Contenedor específico para el GIF -->
         <div class="gif-container">
@@ -100,6 +104,29 @@
 
   <!-- Fase Error Respuesta -->
   <div id="faseErrorRespuesta" style="display: none;">
+    <div id="background"></div>
+<div class="top">
+  <h1>404</h1>
+  <h3>page not found</h3>
+</div>
+<div class="containerError">
+  <div class="ghost-copy">
+    <div class="one"></div>
+    <div class="two"></div>
+    <div class="three"></div>
+    <div class="four"></div>
+  </div>
+  <div class="ghost">
+    <div class="face">
+      <div class="eye"></div>
+      <div class="eye-right"></div>
+      <div class="mouth"></div>
+    </div>
+  </div>
+  <div class="shadow"></div>
+</div>
+<div class="bottom">
+  <p>Boo, looks like a ghost stole this page!</p>
   </div>
   
 

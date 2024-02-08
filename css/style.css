@@ -21,7 +21,7 @@ p {
   line-height:2em;
   padding-bottom:15px;
   text-transform: none;
-  font-size:1em;
+  font-size:1.5em;
   font-weight: normal;
   font-style: italic; font-family: "Playfair Display","Bookman",serif;
   color:#999; letter-spacing:-0.005em; word-spacing:1px;
@@ -97,7 +97,6 @@ button.btn.btn-primary,
 /* Estilos para la trivia */
 #faseTrivia {
   display: none;
-  position: relative;
   text-align: center;
   margin-top: 20px;
 }
@@ -108,28 +107,31 @@ button.btn.btn-primary,
   margin: auto;
   padding: 2.5em 3em;
   background-color: #ffffff;
-  position: relative;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
   border-radius: 0.6em;
   box-shadow: 0 0.9em 2.8em rgba(86, 66, 0, 0.2);
 }
 
 .tarjeta p {
-  padding-bottom:0px;
+  padding-bottom: 0;
 }
-
 
 form {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 0em;
+  transform: translateX(-20px) translatey(-15px);
 }
 
 #opciones {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  align-items: center;
   overflow: auto;
 }
 
@@ -145,8 +147,7 @@ ul {
   flex-wrap: wrap;
   align-items: center; /* Centra verticalmente los elementos hijos */
   position: relative;
-
-  height: 100px;
+  height: 60px; /* Reducido el alto de las opciones */
 }
 
 #opciones input[type=radio] {
@@ -156,10 +157,10 @@ ul {
 
 #opciones label {
   display: flex;
-  align-items: flex-start;;
+  align-items: center; /* Centra verticalmente el texto */
   position: relative;
   font-weight: 300;
-  font-size: 1.25em;
+  font-size: 1em; /* Reducido el tamaño del texto */
   height: 30px;
   z-index: 9;
   cursor: pointer;
@@ -173,17 +174,16 @@ ul {
 #opciones li .check {
   display: block;
   position: relative;
-  border: 5px solid #AAAAAA;
+  border: 3px solid #AAAAAA; /* Reducido el grosor del borde */
   border-radius: 50%;
-  height: 20px;
-  width: 20px;
+  height: 18px; /* Reducido el tamaño del círculo */
+  width: 18px; /* Reducido el tamaño del círculo */
   margin-right: 10px; /* Espacio entre el círculo y el texto */
-  margin-left: -30px; /* Ajuste para acercar el círculo al texto */
   transition: border 0.25s linear;
 }
 
 #opciones li:hover .check {
-  border: 5px solid black;
+  border: 3px solid black; /* Reducido el grosor del borde en el hover */
 }
 
 #opciones li .check::before {
@@ -191,8 +191,8 @@ ul {
   position: absolute;
   content: '';
   border-radius: 50%;
-  height: 12px;
-  width: 12px;
+  height: 10px; /* Reducido el tamaño del punto central */
+  width: 10px; /* Reducido el tamaño del punto central */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -201,7 +201,7 @@ ul {
 }
 
 #opciones input[type=radio]:checked ~ .check {
-  border: 5px solid #b18597;
+  border: 3px solid #b18597;
 }
 
 #opciones input[type=radio]:checked ~ .check::before {
@@ -212,9 +212,11 @@ ul {
   color: #b18597;
 }
 
-#errorContainer {
+#errorContainer,
+#errorAcertijo {
+  text-align: center;
   color: red;
-  margin-top: 30px;
+  margin-top: 15px; /* Reducido el margen superior del contenedor de error */
 }
 
 
@@ -332,47 +334,104 @@ button {
   margin: 0.6em 0 1em 0;
 }
 
+.preAcertijo {
+  text-align: center;
+}
+
 
 /* Estilos para la fase de acertijo */
-.tarjeta-acertijo {
-  border: 2px solid #ff4081;
-  border-radius: 15px;
-  background-color: #fce4ec;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: inline-block;
-  padding: 20px;
-  margin-top: 20px; /* Ajusta el espacio superior según sea necesario */
+
+#faseAcertijo .tarjeta {
+  box-sizing: content-box;
+  width: 30em;
+  margin: auto;
+  padding: 2.5em 3em;
+  background-color: #ffffff;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  border-radius: 0.6em;
+  box-shadow: 0 0.9em 2.8em rgba(86, 66, 0, 0.2);
+}
+
+.acertijoParrafo {
+  text-align: center;
+}
+
+.containerRespuestaAcertijo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.containerRespuestaAcertijo textarea {
+  resize: none;
+}
+
+.containerRespuestaAcertijo input,
+.containerRespuestaAcertijo textarea {
+  background: none;
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  text-align: center;
+  width: 320px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid mix(white, #424242, 70%);
+  &:focus {
+    outline: none;
+  }
+  &:focus ~ label,
+  &:valid ~ label {
+    top: -14px;
+    font-size: 12px;
+    color: #2196F3;
+  }
+  &:focus ~ .bar:before {
+    width: 320px;
+  }
+}
+
+.containerRespuestaAcertijo label {
+  font-size: 16px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 300ms ease all;
 }
 
  /* Estilos para la tarjeta específica de la fase de propuesta */
- .fasePropuesta .tarjeta {
-  background-color: #3498db;
-  border-color: #3498db;
+
+ 
+ #fasePropuesta .tarjeta {
+  text-align: center;
+  box-sizing: content-box;
+  width: 80vw;
+  margin: auto;
+  padding: 2.5em 3em;
+  background-color: #ffffff;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  border-radius: 0.6em;
+  box-shadow: 0 0.9em 2.8em rgba(86, 66, 0, 0.2);
 }
 
-.fasePropuesta .tarjeta-titulo {
-  color: #fff;
-}
-
-.fasePropuesta .btn-respuesta {
-  background-color: #2c3e50;
-  border-color: #2c3e50;
-  color: #ecf0f1;
-}
-
-.fasePropuesta .btn-respuesta:hover {
-  background-color: #34495e;
-  border-color: #34495e;
-}
-
-.fasePropuesta .gif-container {
+#fasePropuesta .gif-container {
+  margin-block: 20px;
   border-radius: 8px;
   overflow: hidden;
   position: relative;
   z-index: 0;
 }
 
-.fasePropuesta .gif-container iframe {
+#fasePropuesta .gif-container iframe {
   width: 100%;
   height: 100%; /* Ajustado para que el iframe ocupe toda la altura del contenedor */
   border: 0;
@@ -381,8 +440,204 @@ button {
   left: 0; /* Ajustado para posicionar el iframe en la parte izquierda del contenedor */
 }
 
+.top {
+  margin-top: 30px;
+}
+
+.containerError {
+  margin: 0 auto;
+  position: relative;
+  width: 250px;
+  height: 250px;
+  margin-top: -40px;
+}
+
+.ghost {
+  width: 50%;
+  height: 53%;
+  left: 25%;
+  top: 10%;
+  position: absolute;
+  border-radius: 50% 50% 0 0;
+  background: #EDEDED;
+  border: 1px solid #BFC0C0;
+  border-bottom: none;
+  animation: float 2s ease-out infinite;
+}
+
+.ghost-copy {
+  width: 50%;
+  height: 53%;
+  left: 25%;
+  top: 10%;
+  position: absolute;
+  border-radius: 50% 50% 0 0;
+  background: #EDEDED;
+  border: 1px solid #BFC0C0;
+  border-bottom: none;
+  animation: float 2s ease-out infinite;
+  z-index: 0;
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  height: 60%;
+  top: 20%;
+}
+
+.eye,
+.eye-right {
+  position: absolute;
+  background: #585959;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  top: 40%;
+}
+
+.eye {
+  left: 25%;
+}
+
+.eye-right {
+  right: 25%;
+}
+
+.mouth {
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  width: 10px;
+  height: 10px;
+  border: 3px solid;
+  border-radius: 50%;
+  border-color: transparent #585959 #585959 transparent;
+  transform: rotate(45deg);
+}
+
+.one,
+.two,
+.three,
+.four {
+  position: absolute;
+  background: #EDEDED;
+  top: 85%;
+  width: 25%;
+  height: 23%;
+  border: 1px solid #BFC0C0;
+  z-index: 0;
+}
+
+.one {
+  border-radius: 0 0 100% 30%;
+  left: -1px;
+}
+
+.two {
+  left: 23%;
+  border-radius: 0 0 50% 50%;
+}
+
+.three {
+  left: 50%;
+  border-radius: 0 0 50% 50%;
+}
+
+.four {
+  left: 74.5%;
+  border-radius: 0 0 30% 100%;
+}
+
+.shadow {
+  position: absolute;
+  width: 30%;
+  height: 7%;
+  background: #BFC0C0;
+  left: 35%;
+  top: 80%;
+  border-radius: 50%;
+  animation: scale 2s infinite;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(15px);
+  }
+}
+
+.bottom {
+  margin-top: 10px;
+}
+
+/*text styling*/
+.top h1 {
+  font-family: 'Abril Fatface', serif;
+  color: #EDEDED;
+  text-align: center;
+  font-size: 9em;
+  margin: 0;
+  text-shadow: -1px 0 #BFC0C0, 0 1px #BFC0C0, 1px 0 #BFC0C0, 0 -1px #BFC0C0;
+}
+
+.top h3 {
+  font-family: 'Lato', sans-serif;
+  font-size: 2em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #BFC0C0;
+  margin-top: -20px;
+  font-weight: 900;
+}
+
+.bottom p {
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  color: #585959;
+  font-size: .6em;
+  margin-top: -20px;
+  text-transform: uppercase;
+}
+
+
 /* Ajustes específicos para dispositivos móviles */
 @media (max-width: 767px) {
+  .six {
+    font-size:1.3em; 
+    font-weight:200;
+  }
+  p {
+    line-height:2em;
+    font-size:0.8em;
+  }
+  
+ #pregunta{
+    line-height:2em;
+    font-size:1em;
+  }
+
+  #opciones label {
+    font-weight: 150;
+    font-size: 0.8sem;
+  }
+
+  #errorContainer,
+  #errorAcertijo {
+    font-size:0.8em;
+  }
+
   .tarjeta {
     box-sizing: border-box;
     width: 80vw;
@@ -416,10 +671,6 @@ button {
     width: 5px;
   }
 
-  #errorContainer {
-    margin-top: 15px; /* Reducción adicional del espacio superior */
-  }
-
   .memotest-card {
     width: 60px; /* Reducimos el tamaño de las tarjetas para dispositivos móviles */
     height: 60px; /* Reducimos el tamaño de las tarjetas para dispositivos móviles */
@@ -436,6 +687,28 @@ button {
   
   }
 
+  #faseAcertijo .tarjeta {
+    box-sizing: border-box;
+    width: 80vw;
+  }
+
+  #faseAcertijo h1 {
+    font-size: 1.2em;
+  }
+  
+  #faseAcertijo p {
+    font-size: 0.6em;
+  }
+
+.containerRespuestaAcertijo input {
+  font-size: 1em;
+}
+
+.containerRespuestaAcertijo input::placeholder {
+  font-size: 0.5em;
+  color: #b18597;
+}
+
   #opcionesRespuesta {
     display: flex;
     flex-direction: column;
@@ -444,8 +717,21 @@ button {
   }
 
   #opcionesRespuesta .btn-primary {
-    margin: 15px;
+    margin: 10px;
   }
   
+  #fasePropuesta .tarjeta {
+    box-sizing: border-box;
+    width: 80vw;
+  }
+
+  #fasePropuesta .gif-container {
+    margin-block: 0px;
+  }
+
+  #fasePropuesta h1 {
+    font-size: 1.2em;
+  }
+
 }
 

@@ -288,11 +288,18 @@ document.addEventListener("DOMContentLoaded", function () {
   function avanzarMemotest() {
     console.log("Avanzando al siguiente paso...");
     document.getElementById("faseMemotest").style.display = "none";
-    document.getElementById("faseAcertijo").style.display = "block";
+    document.getElementById("fasePreAcertijo").style.display = "block";
   }
 
 });
 
+document.getElementById("avanzarPreAcertijo").addEventListener("click", avanzarPreAcertijo);
+
+function avanzarPreAcertijo() {
+  console.log("Avanzando al siguiente paso...");
+  document.getElementById("fasePreAcertijo").style.display = "none";
+  document.getElementById("faseAcertijo").style.display = "block";
+}
     
 document.getElementById("verificarAcertijo").addEventListener("click", verificarAcertijo);
 
@@ -301,14 +308,17 @@ function verificarAcertijo() {
   const respuestaIngresada = document.getElementById("respuestaAcertijo").value.trim().toLowerCase();
   
   // Obtén el contenedor de errores
-  const errorContainer = document.getElementById("errorContainer");
+  const errorAcertijo = document.getElementById("errorAcertijo");
   // Limpia el contenido del contenedor de errores
-  errorContainer.innerHTML = "";
+  errorAcertijo.innerHTML = "";
 
   // Verifica si la respuesta ingresada está vacía
   if (respuestaIngresada === "") {
     // Respuesta vacía, muestra un mensaje de error y no avanza a la siguiente fase
     mostrarError("¡No hagas trampa! Ingresa una respuesta.");
+    setTimeout(() => {
+      errorAcertijo.innerHTML = "";
+    }, 2000); // 5 segundos
     return;
   }
 
@@ -324,16 +334,18 @@ function verificarAcertijo() {
     mostrarError("Respuesta incorrecta. Intenta de nuevo.");
     setTimeout(() => {
       document.getElementById("respuestaAcertijo").value = "";
-    }, 15000); // 15 segundos
+      errorAcertijo.innerHTML = "";
+    }, 2000); // 5 segundos
+  }
+
+  // Función para mostrar mensajes de error
+  function mostrarError(mensaje) {
+    errorAcertijo.textContent = mensaje;
+    errorAcertijo.style.display = "block";
   }
 }
 
-// Función para mostrar mensajes de error
-function mostrarError(mensaje) {
-  const errorContainer = document.getElementById("errorContainer");
-  errorContainer.textContent = mensaje;
-  errorContainer.style.display = "block";
-}
+
 
 // Event listeners para los botones en la fase de propuesta
 document.getElementById("opcionSi1").addEventListener("click", function () {
@@ -362,7 +374,7 @@ document.getElementById("opcionSi4").addEventListener("click", function () {
   
 document.getElementById("opcionNo").addEventListener("click", function () {
     document.getElementById("fasePropuesta").style.display = "none";
-    gameOver();
+    document.getElementById("faseErrorRespuesta").style.display = "block";
 });
   
   
@@ -554,47 +566,47 @@ function mostrarAnimacionCelebracion() {
   draw();
 }
 
-function gameOver() {
-  gameOverDiv = document.createElement('div');
-  gameOverDiv.id = 'gameOverDiv';
+// function gameOver() {
+//   gameOverDiv = document.createElement('div');
+//   gameOverDiv.id = 'gameOverDiv';
 
-  let canvas = document.createElement('canvas');
-  document.getElementsByTagName('body')[0].appendChild(canvas);
-  canvas.style.position = 'absolute';
-  canvas.style.width = '100%';
-  canvas.style.height = '100%';
+//   let canvas = document.createElement('canvas');
+//   document.getElementsByTagName('body')[0].appendChild(canvas);
+//   canvas.style.position = 'absolute';
+//   canvas.style.width = '100%';
+//   canvas.style.height = '100%';
 
-  canvas.width = canvas.clientWidth;
-  canvas.height = canvas.clientHeight;
+//   canvas.width = canvas.clientWidth;
+//   canvas.height = canvas.clientHeight;
 
-  let ctx = canvas.getContext('2d');
+//   let ctx = canvas.getContext('2d');
 
-  function rndNum(num) {
-      return Math.random() * num + 1;
-  }
+//   function rndNum(num) {
+//       return Math.random() * num + 1;
+//   }
 
-  function drawText(text, x, y) {
-      ctx.font = '15px "Segoe UI", Tahoma, Geneva, Verdana, sans-serif';
-      ctx.fillStyle = 'white';
-      ctx.fillText(text, x, y);
-  }
+//   function drawText(text, x, y) {
+//       ctx.font = '15px "Segoe UI", Tahoma, Geneva, Verdana, sans-serif';
+//       ctx.fillStyle = 'white';
+//       ctx.fillText(text, x, y);
+//   }
 
-  function draw() {
-      ctx.fillStyle = 'rgba(0,0,0,0.1)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-  }
+//   function draw() {
+//       ctx.fillStyle = 'rgba(0,0,0,0.1)';
+//       ctx.fillRect(0, 0, canvas.width, canvas.height);
+//   }
 
-  function createRandomText() {
-      drawText('¡404 Error... Todo es bronca y dolor!', rndNum(canvas.width / 2), rndNum(canvas.height / 2));
-  }
+//   function createRandomText() {
+//       drawText('¡404 Error... Todo es bronca y dolor!', rndNum(canvas.width / 2), rndNum(canvas.height / 2));
+//   }
 
-  function loop() {
-      requestAnimationFrame(loop);
-      draw();
-  }
+//   function loop() {
+//       requestAnimationFrame(loop);
+//       draw();
+//   }
 
-  loop();
+//   loop();
 
-  setInterval(createRandomText, 1000);
-}
+//   setInterval(createRandomText, 1000);
+// }
 
